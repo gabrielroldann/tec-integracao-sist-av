@@ -21,8 +21,8 @@ API REST que agrega dados de APIs públicas para fornecer informações geográf
 
 ```bash
 # 1. Clonar o repositório
-git clone <URL_DO_REPOSITORIO>
-cd <nome-da-pasta>
+git clone https://github.com/gabrielroldann/tec-integracao-sist-av
+cd tec-integracao-sist-av
 
 # 2. Instalar dependências
 npm install
