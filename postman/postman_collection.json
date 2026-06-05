@@ -1,0 +1,141 @@
+{
+  "info": {
+    "_postman_id": "n703-api-climatica-unifor",
+    "name": "N703 - API Climática e Geográfica",
+    "description": "Coleção de testes para a API de Agregação de Dados Climáticos e Geográficos — Técnicas de Integração de Sistemas (N703) UNIFOR 2026/1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "GET /api/v1/health",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/health",
+            "description": "Verifica o status da API e disponibilidade dos serviços externos."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Clima",
+      "item": [
+        {
+          "name": "GET /clima/Fortaleza (sucesso)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/clima/Fortaleza",
+            "description": "Retorna dados geográficos e climáticos de Fortaleza - CE."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /clima/São Paulo (sucesso)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/clima/S%C3%A3o%20Paulo",
+            "description": "Retorna dados de São Paulo - SP."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /clima/Curitiba (sucesso)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/clima/Curitiba",
+            "description": "Retorna dados de Curitiba - PR."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /clima/X (erro 400 - nome inválido)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/clima/X",
+            "description": "Deve retornar 400 pois o nome tem menos de 2 caracteres."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /clima/CidadeInexistenteXYZ (erro 404)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/clima/CidadeInexistenteXYZ",
+            "description": "Deve retornar 404 pois a cidade não existe."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Cidades por Estado",
+      "item": [
+        {
+          "name": "GET /cidades/CE (sucesso)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/cidades/CE",
+            "description": "Lista as 10 primeiras cidades do Ceará (padrão)."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /cidades/CE?limite=5",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cidades/CE?limite=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cidades", "CE"],
+              "query": [{ "key": "limite", "value": "5" }]
+            },
+            "description": "Lista 5 cidades do Ceará."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /cidades/SP?limite=20",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/cidades/SP?limite=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "cidades", "SP"],
+              "query": [{ "key": "limite", "value": "20" }]
+            },
+            "description": "Lista 20 cidades de São Paulo."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /cidades/XX (erro 404 - UF inexistente)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/cidades/XX",
+            "description": "Deve retornar 404 pois XX não é uma UF válida."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /cidades/ceara (erro 400 - sigla inválida)",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/cidades/ceara",
+            "description": "Deve retornar 400 pois a sigla deve ter exatamente 2 letras."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
